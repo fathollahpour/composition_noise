@@ -198,8 +198,8 @@ def l2_covering_ours(result, noise_factor, logarithmic, layers, bound, lipschitz
     
     expect_loss = 2 * bound * math.sqrt(n_output) * lipschitz_loss # The amplification in epsilon by taking expectation and loss
     epsilons = [(1/ expect_loss)*epsilon for epsilon in epsilons] 
-    constant = 10 * math.sqrt(10) * pow(3 + 2 * math.sqrt(2), 3/2) * (1 / pow(2*math.pi,0.25)) # The constant in the covering number
-    constant_log = 5 * (3 + 2 * math.sqrt(2)) # The constant in the logarithm.
+    constant = 4 * pow(4+bound, 3/2) * (1 / pow(2*math.pi,0.25)) # The constant in the covering number
+    constant_log = 4 + bound # The constant in the logarithm.
     
   #  bound_activations = [math.log((1-epsilon)/epsilon) for epsilon in epsilons] # The value, which is the inverse of sigmoid at 1-epsilon
  
@@ -217,7 +217,7 @@ def l2_covering_ours(result, noise_factor, logarithmic, layers, bound, lipschitz
         p = layers[i+1]
 
         if logarithmic == False: 
-            constant_epsilon_prime = noise_factor / (5 * (3 + 2 * math.sqrt(2)) * d) 
+            constant_epsilon_prime = noise_factor / ((4 + bound) * d) 
     
             epsilon_prime = [constant_epsilon_prime*epsilon for epsilon in epsilons] 
             bound_activations = [math.log((1-epsilon)/epsilon) for epsilon in epsilon_prime]
@@ -236,7 +236,7 @@ def l2_covering_ours(result, noise_factor, logarithmic, layers, bound, lipschitz
       
         elif logarithmic == True:
     # we use the following codes if the noise_factor id given logarithmically
-            bound_activations = [-1*noise_factor for epsilon in epsilons]
+            bound_activations = [math.log((4+bound)*d)-math.log(epsilon)-1*noise_factor for epsilon in epsilons]
             numerator = lipschitz_activation * math.sqrt(bound * bound_activations[i]) * pow(d, 5/2)
             numerator_log = bound * d
             denumerator = pow(epsilons[i], 3/2)

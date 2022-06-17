@@ -2,6 +2,8 @@
 by Alireza Fathollah Pour (fathola@mcmaster.ca) and Hassan Ashtiani (zokaeiam@mcmaster.ca).
 
 This repository contains the codes used for training (noisy) networks and produce the empirical results of the paper, e.g., NVAC and accuracy plots.
+
+Paper is available at https://arxiv.org/abs/2206.07199
 ## Guidlines
 * Each folder is named according to the architecture; e.g., “250\_250\_250" is the folder containing results for a network with three hidden layers each containing 250 neurons.
 * For each model there are three files included:

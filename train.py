@@ -1,5 +1,3 @@
-
-# This piece of code is submitted as a supplementary material for submission 10938 titled
 # ``Benefits of Additive Noise in Composing Classes with Bounded Capacity''
 
 # In[1]:
